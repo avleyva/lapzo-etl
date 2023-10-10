@@ -1,0 +1,18 @@
+# modules
+node_modules
+
+# configs
+.env*
+
+# mic
+.DS_Store
+.vscode
+
+# logs
+npm-debug.log
+logs
+
+# files
+public/xls
+public/doc
+temp
