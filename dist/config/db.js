@@ -4,16 +4,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getGCPSecrets = void 0;
+const secret_manager_1 = require("@google-cloud/secret-manager");
 const knex_1 = require("knex");
 const global_conf_1 = __importDefault(require("./global_conf"));
 const getGCPSecrets = async () => {
-    // const client = new SecretManagerServiceClient();
-    // const secretRaw = await client.accessSecretVersion({
-    //   name: 'projects/378281898300/secrets/lernit-lxp-backend-prod/versions/latest',
-    // });
-    // const secretsJSON = JSON.parse(
-    //   secretRaw[0]?.payload?.data?.toString() || '{}',
-    // );
+    const client = new secret_manager_1.SecretManagerServiceClient();
+    const secretRaw = await client.accessSecretVersion({
+        name: 'projects/378281898300/secrets/lernit-lxp-backend-prod/versions/latest',
+    });
+    const secretsJSON = JSON.parse(secretRaw[0]?.payload?.data?.toString() || '{}');
     /***************************************************************************
      * Ambiente de Producción
      */

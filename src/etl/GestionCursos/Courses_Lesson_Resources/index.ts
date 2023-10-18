@@ -70,7 +70,7 @@ const mainTransformFn = async () => {
           lesson_id: vdmCoursesLessons.find(
             (c: any) => c.legacy_lesson_fb === lxpLesson.lesson_fb,
           ).id,
-          content: lxpResourceObject?.content || '',
+          content: JSON.stringify(lxpResourceObject?.content || {}),
           index: 0, // TODO: Revisar si este campo seguirá siendo necesario. Es posible que se elimine.
           enabled: false, // TODO: Revisar si este campo seguirá siendo necesario. Es posible que se elimine.
           created_at: lxpLesson.created_at,
@@ -82,7 +82,7 @@ const mainTransformFn = async () => {
       }
     }
     console.log(
-      'Total de preguntas de lecciones transformadas para carga hacia el LMS:',
+      'Total de recursos de lecciones transformadas para carga hacia el LMS:',
       newCourseLessonResourcesForLMS.length,
     );
   } catch (error: any) {
@@ -91,24 +91,24 @@ const mainTransformFn = async () => {
 };
 
 /**
- * Método para realizar la carga de preguntas de lecciones ya transformados hacia el LMS de VDM
+ * Método para realizar la carga de recursos de lecciones ya transformados hacia el LMS de VDM
  */
 const mainLoadFn = async () => {
-  //   const knexVdmLms = serverGlobals.knexVdmLms;
-  //   try {
-  //     console.log('Cargando preguntas de lecciones en el LMS...');
-  //     if (!newLessonQuestionsForLMS.length) {
-  //       console.log('No hay preguntas de lecciones nuevas para cargar en el LMS');
-  //       return;
-  //     }
-  //     await knexVdmLms('courses_lesson_questions').insert(
-  //       newLessonQuestionsForLMS,
-  //     );
-  //     // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
-  //     await sleep(2000);
-  //   } catch (error: any) {
-  //     console.log('** Error en la carga de Course Lessons al LMS', error.message);
-  //   }
+  const knexVdmLms = serverGlobals.knexVdmLms;
+  try {
+    console.log('Cargando recursos de lecciones en el LMS...');
+    if (!newCourseLessonResourcesForLMS.length) {
+      console.log('No hay recursos de lecciones nuevas para cargar en el LMS');
+      return;
+    }
+    await knexVdmLms('courses_lessons_resources').insert(
+      newCourseLessonResourcesForLMS,
+    );
+    // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
+    await sleep(2000);
+  } catch (error: any) {
+    console.log('** Error en la carga de Course Lessons al LMS', error.message);
+  }
 };
 
 /**
