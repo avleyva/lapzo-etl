@@ -28,7 +28,7 @@ const getLessonType = (lxpLessonType, lxpLessonSubtype) => {
             return 'URL';
             break;
         case 'H-':
-            return 'EMBEDDED';
+            return 'HTML5';
             break;
         case '-HTML': // TODO: Revisar
             return 'EMBEDDED';
@@ -42,17 +42,17 @@ const getLessonType = (lxpLessonType, lxpLessonSubtype) => {
         case 'L-':
             return 'LECTURE';
             break;
-        case 'L-EDITOR': // TODO: Revisar
-            return 'HTML5';
+        case 'L-EDITOR':
+            return 'LECTURE';
             break;
-        case 'L-HTML': // TODO: Revisar
-            return 'HTML5';
+        case 'L-HTML':
+            return 'LECTURE';
             break;
-        case 'L-PDF': // TODO: Revisar
-            return 'READ';
+        case 'L-PDF':
+            return 'LECTURE';
             break;
-        case 'L-URL': // TODO: Revisar
-            return 'URL';
+        case 'L-URL':
+            return 'LECTURE';
             break;
         case 'M-':
             return 'MEETING';

@@ -136,6 +136,24 @@ export const getGCPSecrets = async () => {
   //   },
   // };
 
+  /***************************************************************************
+   * Ambiente de Staging
+   */
+
+  /**
+   * Voldemort LMS STG
+   */
+  // const knexConfigVdm: Knex.Config = {
+  //   client: 'pg',
+  //   connection: {
+  //     host: 'lapzo-platform-stg.ccbmbi2jqpeb.us-west-2.rds.amazonaws.com',
+  //     port: 5432,
+  //     user: 'postgres',
+  //     password: 'j23PjGjnkfJ479oNKZbh2ncXPhVJr3oc',
+  //     database: 'postgres',
+  //   },
+  // };
+
   const knexInstanceLxp = knex(knexConfigLxp);
   // const knexInstanceLxpReplica1 = knex(knexConfigLxpReplica1);
   const knexInstanceVdmLms = knex(knexConfigVdmLms);
