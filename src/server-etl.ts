@@ -14,6 +14,7 @@ import { startUserModulesPipeline } from './etl/TomaCursos/User_Modules';
 import { startUserLessonsPipeline } from './etl/TomaCursos/User_Lessons';
 import { startCourseLessonsResourcesPipeline } from './etl/GestionCursos/Courses_Lesson_Resources';
 import { startCatalogCoursesPipeline } from './etl/CatalogoCursos/Courses';
+import { startCatalogModulesPipeline } from './etl/CatalogoCursos/Modules';
 
 const run = async () => {
   serverGlobals.transformClient = 'cat-lapzo';
@@ -48,6 +49,7 @@ const run = async () => {
   // await startUserLessonsPipeline();
 
   await startCatalogCoursesPipeline();
+  await startCatalogModulesPipeline();
 
   /**
    * Al final se cierran las conexiones globales a la DB

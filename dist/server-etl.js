@@ -8,6 +8,7 @@ const global_conf_1 = __importDefault(require("./config/global_conf"));
 // import { extractLXPCompetencies } from './etl/Competencias';
 const Users_1 = require("./etl/Users");
 const Courses_1 = require("./etl/CatalogoCursos/Courses");
+const Modules_1 = require("./etl/CatalogoCursos/Modules");
 const run = async () => {
     global_conf_1.default.transformClient = 'cat-lapzo';
     // serverGlobals.transformClient = 'btconsortium';
@@ -34,6 +35,7 @@ const run = async () => {
     // await startUserModulesPipeline();
     // await startUserLessonsPipeline();
     await (0, Courses_1.startCatalogCoursesPipeline)();
+    await (0, Modules_1.startCatalogModulesPipeline)();
     /**
      * Al final se cierran las conexiones globales a la DB
      */

@@ -152,9 +152,9 @@ const mainLoadFn = async () => {
             console.log(`Insertando chunk ${cont} de ${totalChunks}...`);
             await knexVdmLms('courses').insert(newCoursesForLMS);
             chunk = [];
+            // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
+            await (0, utils_1.sleep)(utils_1.WAITNING_TIME_BETWEEN_LOADS);
         }
-        // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
-        await (0, utils_1.sleep)(2000);
     }
     catch (error) {
         console.log('** Error en la carga de cursos a Voldemort', error.message);
