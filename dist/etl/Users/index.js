@@ -30,7 +30,7 @@ const mainExtractFn = async () => {
             .select('*')
             .where('client_id', clientSubdomain);
         // Se crean los usuarios genéricos para el LMS y se agregan a la lista de usuarios LXP, para que sean transformados y cargados al LMS
-        const genericUsers = await users_utils_1.getGenericUsers(clientSubdomain);
+        const genericUsers = await (0, users_utils_1.getGenericUsers)(clientSubdomain);
         lxpUsers = [...lxpUsers, ...genericUsers];
         console.log('Total de usuarios encontrados en LXP:', lxpUsers.length);
         vdmLMSUsers = await knexVdmLms('users')
@@ -127,7 +127,7 @@ const mainLoadFn = async () => {
             await knexVdmLms('users').insert(chunk).onConflict('id').merge();
             chunk = [];
             // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
-            await utils_1.sleep(utils_1.WAITNING_TIME_BETWEEN_LOADS);
+            await (0, utils_1.sleep)(utils_1.WAITNING_TIME_BETWEEN_LOADS);
         }
     }
     catch (error) {

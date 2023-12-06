@@ -5,25 +5,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = require("./config/db");
 const global_conf_1 = __importDefault(require("./config/global_conf"));
-const Courses_1 = require("./etl/GestionCursos/Courses");
+// import { extractLXPCompetencies } from './etl/Competencias';
+const Users_1 = require("./etl/Users");
+const Courses_1 = require("./etl/CatalogoCursos/Courses");
 const run = async () => {
-    global_conf_1.default.transformClient = 'content';
-    // serverGlobals.transformClient = 'team';
+    global_conf_1.default.transformClient = 'cat-lapzo';
     // serverGlobals.transformClient = 'btconsortium';
     global_conf_1.default.catalogClient = 'cat-lapzo';
     /*************************************
      * Se establecen las conexiones globales a la DB
      */
-    await db_1.getGCPSecrets();
+    await (0, db_1.getGCPSecrets)();
     /*************************************
      * Inicia el Pipeline del ETL
      */
     // await startLessonsPipeline();
     // await etlCompetencies.startCompetenciesPipeline();
     // Inicio de pipelines generales
-    // await startUsersPipeline();
+    await (0, Users_1.startUsersPipeline)();
     // Inicio de pipelines de Gestion de Cursos
-    await Courses_1.startCoursesPipeline();
+    // await startCoursesPipeline();
     // await startModulesPipeline();
     // await startCourseLessonsPipeline();
     // await startCourseLessonsQuestionsPipeline();
@@ -32,6 +33,7 @@ const run = async () => {
     // await startUserCoursesPipeline();
     // await startUserModulesPipeline();
     // await startUserLessonsPipeline();
+    await (0, Courses_1.startCatalogCoursesPipeline)();
     /**
      * Al final se cierran las conexiones globales a la DB
      */

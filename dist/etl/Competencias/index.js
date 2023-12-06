@@ -91,7 +91,7 @@ const loadCompetenciesToVoldemort = async () => {
                 voldemort_id: newVdmCompetency[0].id,
             });
             console.log(`Se inserta competencia en VDM: [${competency.name.trim()}] - [${newVdmCompetency[0].id}]}`);
-            await utils_1.sleep(3000);
+            await (0, utils_1.sleep)(3000);
         }
         catch (error) {
             console.log('** Error en la carga de competencias a Voldemort', error.message);

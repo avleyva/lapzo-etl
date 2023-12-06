@@ -13,10 +13,10 @@ import { startUserCoursesPipeline } from './etl/TomaCursos/User_Courses';
 import { startUserModulesPipeline } from './etl/TomaCursos/User_Modules';
 import { startUserLessonsPipeline } from './etl/TomaCursos/User_Lessons';
 import { startCourseLessonsResourcesPipeline } from './etl/GestionCursos/Courses_Lesson_Resources';
+import { startCatalogCoursesPipeline } from './etl/CatalogoCursos/Courses';
 
 const run = async () => {
-  serverGlobals.transformClient = 'content';
-  // serverGlobals.transformClient = 'team';
+  serverGlobals.transformClient = 'cat-lapzo';
   // serverGlobals.transformClient = 'btconsortium';
 
   serverGlobals.catalogClient = 'cat-lapzo';
@@ -33,10 +33,10 @@ const run = async () => {
   // await etlCompetencies.startCompetenciesPipeline();
 
   // Inicio de pipelines generales
-  // await startUsersPipeline();
+  await startUsersPipeline();
 
   // Inicio de pipelines de Gestion de Cursos
-  await startCoursesPipeline();
+  // await startCoursesPipeline();
   // await startModulesPipeline();
   // await startCourseLessonsPipeline();
   // await startCourseLessonsQuestionsPipeline();
@@ -46,6 +46,8 @@ const run = async () => {
   // await startUserCoursesPipeline();
   // await startUserModulesPipeline();
   // await startUserLessonsPipeline();
+
+  await startCatalogCoursesPipeline();
 
   /**
    * Al final se cierran las conexiones globales a la DB

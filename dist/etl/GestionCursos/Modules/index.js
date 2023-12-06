@@ -79,7 +79,7 @@ const mainTransformFn = async () => {
                     legacy_module_fb: lxpModule.module_fb,
                     legacy_course_fb: lxpModule.course_fb,
                     legacy: JSON.stringify(moduleLegacyInfo),
-                    course_id: modules_utils_1.getCourseId(lxpModule.course_fb, lmsCourses),
+                    course_id: (0, modules_utils_1.getCourseId)(lxpModule.course_fb, lmsCourses),
                 };
                 newModulesForLMS.push(newLMSModuleTmp);
             }
@@ -103,7 +103,7 @@ const mainLoadFn = async () => {
         }
         await knexVdmLms('courses_modules').insert(newModulesForLMS);
         // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
-        await utils_1.sleep(2000);
+        await (0, utils_1.sleep)(2000);
     }
     catch (error) {
         console.log('** Error en la carga de módulos a Voldemort', error.message);

@@ -46,7 +46,7 @@ const mainTransformFn = async () => {
         // Se obtienen todas las lecciones de LXP que aún no han sido agregadas al LMS de VDM
         for (const lxpLesson of lxpLessons) {
             const lmsCourseLessonTmp = vdmCoursesLessons.find((e) => e.legacy_lesson_fb == lxpLesson.lesson_fb);
-            const lxpResourceObject = courses_lesson_resource_utils_1.getLXPLessonResource(lxpLesson);
+            const lxpResourceObject = (0, courses_lesson_resource_utils_1.getLXPLessonResource)(lxpLesson);
             if (lxpResourceObject) {
                 const newLMSCourseLessonResourceTmp = {
                     lesson_id: vdmCoursesLessons.find((c) => c.legacy_lesson_fb === lxpLesson.lesson_fb).id,
@@ -79,7 +79,7 @@ const mainLoadFn = async () => {
         }
         await knexVdmLms('courses_lessons_resources').insert(newCourseLessonResourcesForLMS);
         // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
-        await utils_1.sleep(2000);
+        await (0, utils_1.sleep)(2000);
     }
     catch (error) {
         console.log('** Error en la carga de Course Lessons al LMS', error.message);

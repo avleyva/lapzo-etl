@@ -142,10 +142,10 @@ const getGCPSecrets = async () => {
     //     database: 'postgres',
     //   },
     // };
-    const knexInstanceLxp = knex_1.knex(knexConfigLxp);
+    const knexInstanceLxp = (0, knex_1.knex)(knexConfigLxp);
     // const knexInstanceLxpReplica1 = knex(knexConfigLxpReplica1);
-    const knexInstanceVdmLms = knex_1.knex(knexConfigVdmLms);
-    const knexInstanceVdm = knex_1.knex(knexConfigVdm);
+    const knexInstanceVdmLms = (0, knex_1.knex)(knexConfigVdmLms);
+    const knexInstanceVdm = (0, knex_1.knex)(knexConfigVdm);
     global_conf_1.default.knexLxp = knexInstanceLxp;
     // serverGlobals.knexLxpRepl1 = knexInstanceLxpReplica1;
     global_conf_1.default.knexVdmLms = knexInstanceVdmLms;

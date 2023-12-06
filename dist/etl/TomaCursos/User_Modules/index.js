@@ -132,7 +132,7 @@ const mainLoadFn = async () => {
         }
         await knexVdmLms('user_modules').insert(newLMSUserModulesForLMS);
         // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
-        await utils_1.sleep(2000);
+        await (0, utils_1.sleep)(2000);
     }
     catch (error) {
         console.log('** Error en la carga de user_modules al LMS', error.message);
