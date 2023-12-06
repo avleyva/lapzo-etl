@@ -91,7 +91,7 @@ const mainTransformFn = async () => {
                     resources: JSON.stringify(lxpLesson.resources_json),
                     legacy: JSON.stringify(lessonLegacyInfo),
                     auto_review_on_enrollment: lxpLesson.auto_review_on_enrollment || false,
-                    type: (0, lessons_utils_1.getLessonType)(lxpLesson.type || '', lxpLesson.subtype || ''),
+                    type: lessons_utils_1.getLessonType(lxpLesson.type || '', lxpLesson.subtype || ''),
                     access: 'FREE',
                     legacy_lesson_fb: lxpLesson.lesson_fb,
                 };
@@ -117,7 +117,7 @@ const mainLoadFn = async () => {
         }
         const newVdmCompetency = await knexVdmLms('lessons').insert(newLessonsForLMS);
         // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
-        await (0, utils_1.sleep)(2000);
+        await utils_1.sleep(2000);
     }
     catch (error) {
         console.log('** Error en la carga de lecciones a Voldemort', error.message);

@@ -104,7 +104,7 @@ const mainTransformFn = async () => {
                     module_id: lmsModules.find((m) => m.legacy_module_fb === lxpUserLesson.module_id &&
                         m.legacy_course_fb === lxpUserLesson.course_id)?.id || null,
                     lesson_id: lmsLessons.find((e) => e.legacy_lesson_fb === lxpUserLesson.lesson_fb)?.id || null,
-                    type: (0, user_lessons_utils_1.getUserLessonType)(lxpUserLesson.type),
+                    type: user_lessons_utils_1.getUserLessonType(lxpUserLesson.type),
                     progress: lxpUserLesson.completed ? 100 : 0,
                     score: Number.parseInt(lxpUserLesson?.score?.toString() || '0'),
                     order: 0,
@@ -149,10 +149,10 @@ const mainLoadFn = async () => {
             const chunk = newLMSUserLessonsForLMS.slice(i, i + chunkSize);
             console.log(`Insertando chunk ${i}`);
             await knexVdmLms('user_lessons').insert(chunk);
-            await (0, utils_1.sleep)(2000);
+            await utils_1.sleep(2000);
         }
         // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
-        await (0, utils_1.sleep)(2000);
+        await utils_1.sleep(2000);
     }
     catch (error) {
         console.log('** Error en la carga de user_lessons al LMS', error.message);

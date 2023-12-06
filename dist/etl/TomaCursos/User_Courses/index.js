@@ -109,7 +109,7 @@ const mainTransformFn = async () => {
                     client_id: lmsClient.id,
                     course_id: lmsCourses.find((c) => c.legacy_course_fb === lxpUserCourse.course_fb).id || null,
                     user_id: lmsUserIdTmp,
-                    status: (0, user_courses_utils_1.getUserCourseStatus)(lxpUserCourse.status),
+                    status: user_courses_utils_1.getUserCourseStatus(lxpUserCourse.status),
                     progress: Number.parseFloat(lxpUserCourse.progress.toString()),
                     completed_at: lxpUserCourse.completed_at,
                     score: Number.parseInt(lxpUserCourse.score.toString()),
@@ -151,7 +151,7 @@ const mainLoadFn = async () => {
         }
         await knexVdmLms('user_courses').insert(newLMSUserCoursesForLMS);
         // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
-        await (0, utils_1.sleep)(2000);
+        await utils_1.sleep(2000);
     }
     catch (error) {
         console.log('** Error en la carga de user_courses al LMS', error.message);

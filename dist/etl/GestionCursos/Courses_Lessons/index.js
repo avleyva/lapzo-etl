@@ -106,8 +106,8 @@ const mainTransformFn = async () => {
                     legacy: JSON.stringify(lessonLegacyInfo),
                     access: 'FREE',
                     assign: lxpLesson.assign || 0,
-                    subtype: (0, courses_lessons_utils_1.getLessonSubType)(lxpLesson.subtype || ''),
-                    type: (0, courses_lessons_utils_1.getLessonType)(lxpLesson.type || '', lxpLesson.subtype || ''),
+                    subtype: courses_lessons_utils_1.getLessonSubType(lxpLesson.subtype || ''),
+                    type: courses_lessons_utils_1.getLessonType(lxpLesson.type || '', lxpLesson.subtype || ''),
                     auto_review_on_enrollment: lxpLesson.auto_review_on_enrollment || false,
                     legacy_lesson_fb: lxpLesson.lesson_fb,
                 };
@@ -133,7 +133,7 @@ const mainLoadFn = async () => {
         }
         await knexVdmLms('courses_lessons').insert(newLessonsForLMS);
         // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
-        await (0, utils_1.sleep)(2000);
+        await utils_1.sleep(2000);
     }
     catch (error) {
         console.log('** Error en la carga de Course Lessons al LMS', error.message);

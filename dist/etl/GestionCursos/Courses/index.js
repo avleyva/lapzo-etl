@@ -110,7 +110,7 @@ const mainTransformFn = async () => {
                 };
                 const newLMSCourseTmp = {
                     client_id: lmsClient.id,
-                    author_id: await (0, courses_utils_1.getCourseAuthor)(lxpCourse.client_id, lxpCourse.created_by_json || '{}', vdmLMSUsers),
+                    author_id: await courses_utils_1.getCourseAuthor(lxpCourse.client_id, lxpCourse.created_by_json || '{}', vdmLMSUsers),
                     name: lxpCourse.name,
                     description: lxpCourse?.description || '',
                     image_url: lxpCourse.image_url,
@@ -129,7 +129,7 @@ const mainTransformFn = async () => {
                     legacy_course_fb: lxpCourse.course_fb,
                     show_evaluation_feedback: lxpCourse.show_evation_feedback ? 1 : 0,
                     language: lxpCourse.language,
-                    difficulty: (0, courses_utils_1.getCourseDifficulty)(lxpCourse.difficulty || 1),
+                    difficulty: courses_utils_1.getCourseDifficulty(lxpCourse.difficulty || 1),
                     validity: lxpCourse.validity || 'na',
                 };
                 newCoursesForLMS.push(newLMSCourseTmp);
@@ -154,7 +154,7 @@ const mainLoadFn = async () => {
         }
         await knexVdmLms('courses').insert(newCoursesForLMS);
         // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
-        await (0, utils_1.sleep)(2000);
+        await utils_1.sleep(2000);
     }
     catch (error) {
         console.log('** Error en la carga de cursos a Voldemort', error.message);

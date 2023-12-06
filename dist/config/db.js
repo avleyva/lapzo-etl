@@ -43,7 +43,7 @@ const getGCPSecrets = async () => {
     //   },
     // };
     /**
-     * Voldemort LMS Producción
+     * LMS Producción
      */
     // const knexConfigVdmLms: Knex.Config = {
     //   client: 'pg',
@@ -85,7 +85,7 @@ const getGCPSecrets = async () => {
         },
     };
     /**
-     * Voldemort LMS Local
+     * LMS Local
      */
     const knexConfigVdmLms = {
         client: 'pg',
@@ -114,7 +114,7 @@ const getGCPSecrets = async () => {
      * Ambiente de QA
      */
     /**
-     * Voldemort LMS QA
+     * LMS QA
      */
     // const knexConfigVdmLms: Knex.Config = {
     //   client: 'pg',
@@ -126,10 +126,26 @@ const getGCPSecrets = async () => {
     //     database: 'postgres',
     //   },
     // };
-    const knexInstanceLxp = (0, knex_1.knex)(knexConfigLxp);
+    /***************************************************************************
+     * Ambiente de Staging
+     */
+    /**
+     * Voldemort LMS STG
+     */
+    // const knexConfigVdm: Knex.Config = {
+    //   client: 'pg',
+    //   connection: {
+    //     host: 'lapzo-platform-stg.ccbmbi2jqpeb.us-west-2.rds.amazonaws.com',
+    //     port: 5432,
+    //     user: 'postgres',
+    //     password: 'j23PjGjnkfJ479oNKZbh2ncXPhVJr3oc',
+    //     database: 'postgres',
+    //   },
+    // };
+    const knexInstanceLxp = knex_1.knex(knexConfigLxp);
     // const knexInstanceLxpReplica1 = knex(knexConfigLxpReplica1);
-    const knexInstanceVdmLms = (0, knex_1.knex)(knexConfigVdmLms);
-    const knexInstanceVdm = (0, knex_1.knex)(knexConfigVdm);
+    const knexInstanceVdmLms = knex_1.knex(knexConfigVdmLms);
+    const knexInstanceVdm = knex_1.knex(knexConfigVdm);
     global_conf_1.default.knexLxp = knexInstanceLxp;
     // serverGlobals.knexLxpRepl1 = knexInstanceLxpReplica1;
     global_conf_1.default.knexVdmLms = knexInstanceVdmLms;

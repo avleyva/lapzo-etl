@@ -15,9 +15,11 @@ import { startUserLessonsPipeline } from './etl/TomaCursos/User_Lessons';
 import { startCourseLessonsResourcesPipeline } from './etl/GestionCursos/Courses_Lesson_Resources';
 
 const run = async () => {
-  // serverGlobals.transformClient = 'content';
-  serverGlobals.transformClient = 'team';
+  serverGlobals.transformClient = 'content';
+  // serverGlobals.transformClient = 'team';
   // serverGlobals.transformClient = 'btconsortium';
+
+  serverGlobals.catalogClient = 'cat-lapzo';
 
   /*************************************
    * Se establecen las conexiones globales a la DB
@@ -34,11 +36,11 @@ const run = async () => {
   // await startUsersPipeline();
 
   // Inicio de pipelines de Gestion de Cursos
-  // await startCoursesPipeline();
+  await startCoursesPipeline();
   // await startModulesPipeline();
   // await startCourseLessonsPipeline();
   // await startCourseLessonsQuestionsPipeline();
-  await startCourseLessonsResourcesPipeline();
+  // await startCourseLessonsResourcesPipeline();
 
   // Inicio de pipelines de Toma de Cursos
   // await startUserCoursesPipeline();

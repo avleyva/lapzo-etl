@@ -45,7 +45,7 @@ export const getGCPSecrets = async () => {
   // };
 
   /**
-   * Voldemort LMS Producción
+   * LMS Producción
    */
   // const knexConfigVdmLms: Knex.Config = {
   //   client: 'pg',
@@ -91,7 +91,7 @@ export const getGCPSecrets = async () => {
   };
 
   /**
-   * Voldemort LMS Local
+   * LMS Local
    */
   const knexConfigVdmLms: Knex.Config = {
     client: 'pg',
@@ -123,7 +123,7 @@ export const getGCPSecrets = async () => {
    */
 
   /**
-   * Voldemort LMS QA
+   * LMS QA
    */
   // const knexConfigVdmLms: Knex.Config = {
   //   client: 'pg',
