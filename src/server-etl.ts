@@ -52,11 +52,11 @@ const run = async () => {
   // await startUserLessonsPipeline();
 
   // Inicio de pipelines de Gestion de Cursos de Catálogo (Marketplace)
-  await startCatalogCoursesPipeline();
-  await startCatalogModulesPipeline();
-  await startCatalogCourseLessonsPipeline();
+  // await startCatalogCoursesPipeline();
+  // await startCatalogModulesPipeline();
+  // await startCatalogCourseLessonsPipeline();
   await startCatalogCourseLessonsQuestionsPipeline();
-  await startCatalogCourseLessonsResourcesPipeline();
+  // await startCatalogCourseLessonsResourcesPipeline();
 
   /**
    * Al final se cierran las conexiones globales a la DB

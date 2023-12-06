@@ -125,7 +125,7 @@ const mainLoadFn = async () => {
       );
       console.log(`Insertando chunk ${cont} de ${totalChunks}...`);
       await knexVdmLms('courses_lessons_resources')
-        .insert(newCourseLessonResourcesForLMS)
+        .insert(chunk)
         .onConflict(['lesson_id', 'type'])
         .ignore();
       chunk = [];

@@ -68,6 +68,10 @@ const mainExtractFn = async () => {
       .whereIn(
         'lessons_cl.lesson_fb',
         vdmCoursesLessons.map((c: any) => c.lesson_fb),
+      )
+      .whereNotIn(
+        'lesson_questions_tb.question_fb',
+        vdmLMSCoursesLessonsQuestions.map((c: any) => c.legacy_question_fb),
       );
 
     console.log(
@@ -150,9 +154,7 @@ const mainLoadFn = async () => {
     ) {
       chunk = newLessonQuestionsForLMS.slice(i, i + MAX_RECORDS_TO_INSERT);
       console.log(`Insertando chunk ${cont} de ${totalChunks}...`);
-      await knexVdmLms('courses_lesson_questions').insert(
-        newLessonQuestionsForLMS,
-      );
+      await knexVdmLms('courses_lesson_questions').insert(chunk);
       chunk = [];
       // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
       await sleep(WAITNING_TIME_BETWEEN_LOADS);
