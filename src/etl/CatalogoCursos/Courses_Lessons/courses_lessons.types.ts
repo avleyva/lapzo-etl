@@ -27,7 +27,7 @@ export type LXPLesson = {
   privacy: boolean;
   html: string | null;
   video: string | null;
-  lectre: string | null;
+  lecture: string | null;
   created_by: string | null;
   is_individual: boolean;
   embed_json: string | null;

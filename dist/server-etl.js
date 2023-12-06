@@ -11,6 +11,7 @@ const Courses_1 = require("./etl/CatalogoCursos/Courses");
 const Modules_1 = require("./etl/CatalogoCursos/Modules");
 const Courses_Lessons_1 = require("./etl/CatalogoCursos/Courses_Lessons");
 const Courses_Lesson_Questions_1 = require("./etl/CatalogoCursos/Courses_Lesson_Questions");
+const Courses_Lesson_Resources_1 = require("./etl/CatalogoCursos/Courses_Lesson_Resources");
 const run = async () => {
     global_conf_1.default.transformClient = 'cat-lapzo';
     // serverGlobals.transformClient = 'btconsortium';
@@ -41,6 +42,7 @@ const run = async () => {
     await (0, Modules_1.startCatalogModulesPipeline)();
     await (0, Courses_Lessons_1.startCatalogCourseLessonsPipeline)();
     await (0, Courses_Lesson_Questions_1.startCatalogCourseLessonsQuestionsPipeline)();
+    await (0, Courses_Lesson_Resources_1.startCatalogCourseLessonsResourcesPipeline)();
     /**
      * Al final se cierran las conexiones globales a la DB
      */

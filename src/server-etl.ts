@@ -17,6 +17,7 @@ import { startCatalogCoursesPipeline } from './etl/CatalogoCursos/Courses';
 import { startCatalogModulesPipeline } from './etl/CatalogoCursos/Modules';
 import { startCatalogCourseLessonsPipeline } from './etl/CatalogoCursos/Courses_Lessons';
 import { startCatalogCourseLessonsQuestionsPipeline } from './etl/CatalogoCursos/Courses_Lesson_Questions';
+import { startCatalogCourseLessonsResourcesPipeline } from './etl/CatalogoCursos/Courses_Lesson_Resources';
 
 const run = async () => {
   serverGlobals.transformClient = 'cat-lapzo';
@@ -55,6 +56,7 @@ const run = async () => {
   await startCatalogModulesPipeline();
   await startCatalogCourseLessonsPipeline();
   await startCatalogCourseLessonsQuestionsPipeline();
+  await startCatalogCourseLessonsResourcesPipeline();
 
   /**
    * Al final se cierran las conexiones globales a la DB
