@@ -31,15 +31,14 @@ const mainExtractFn = async () => {
         vdmLMSUsers = await knexVdmLms('users')
             .select('users.*')
             .join('clients', 'clients.id', 'users.client_id')
-            .where('clients.subdomain', lmsClientCatalog)
-            .limit(50);
+            .where('clients.subdomain', lmsClientCatalog);
         // Se obtienen todos los cursos de LXP con stage >= 7 y que tengan usuarios inscritos,
         // para descartar lo que pueden ser cursos de prueba. Es probable que un cliente quiera recuperar algunos de estos cursos sin inscritos
         lxpCourses = await knexLxp('courses_cl')
             .select('*')
             .where('client_id', 'content')
             .andWhere('courses_cl.stage', '>=', 7)
-            .limit(5);
+            .limit(100);
         console.log('Total de cursos encontrados en LXP:', lxpCourses.length);
         vdmLMSCourses = await knexVdmLms('courses')
             .select('courses.*')

@@ -124,9 +124,10 @@ const mainLoadFn = async () => {
         i + MAX_RECORDS_TO_INSERT,
       );
       console.log(`Insertando chunk ${cont} de ${totalChunks}...`);
-      await knexVdmLms('courses_lessons_resources').insert(
-        newCourseLessonResourcesForLMS,
-      );
+      await knexVdmLms('courses_lessons_resources')
+        .insert(newCourseLessonResourcesForLMS)
+        .onConflict(['lesson_id', 'type'])
+        .ignore();
       chunk = [];
       // Damos un poco de oxigeno a la base de datos para procesar los inserts y no saturarla
       await sleep(WAITNING_TIME_BETWEEN_LOADS);
