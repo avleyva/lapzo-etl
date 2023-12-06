@@ -9,6 +9,7 @@ const global_conf_1 = __importDefault(require("./config/global_conf"));
 const Users_1 = require("./etl/Users");
 const Courses_1 = require("./etl/CatalogoCursos/Courses");
 const Modules_1 = require("./etl/CatalogoCursos/Modules");
+const Courses_Lessons_1 = require("./etl/CatalogoCursos/Courses_Lessons");
 const run = async () => {
     global_conf_1.default.transformClient = 'cat-lapzo';
     // serverGlobals.transformClient = 'btconsortium';
@@ -34,8 +35,10 @@ const run = async () => {
     // await startUserCoursesPipeline();
     // await startUserModulesPipeline();
     // await startUserLessonsPipeline();
+    // Inicio de pipelines de Gestion de Cursos de Catálogo (Marketplace)
     await (0, Courses_1.startCatalogCoursesPipeline)();
     await (0, Modules_1.startCatalogModulesPipeline)();
+    await (0, Courses_Lessons_1.startCatalogCourseLessonsPipeline)();
     /**
      * Al final se cierran las conexiones globales a la DB
      */
