@@ -20,10 +20,12 @@ import { startCatalogCourseLessonsQuestionsPipeline } from './etl/CatalogoCursos
 import { startCatalogCourseLessonsResourcesPipeline } from './etl/CatalogoCursos/Courses_Lesson_Resources';
 
 const run = async () => {
-  serverGlobals.transformClient = 'cat-lapzo';
-  // serverGlobals.transformClient = 'btconsortium';
+  // serverGlobals.transformClient = 'mazda';
+  serverGlobals.transformClient = 'cat-tm';
 
-  serverGlobals.catalogClient = 'cat-lapzo';
+  serverGlobals.catalogClient = 'cat-tm';
+  // serverGlobals.catalogOriginRaw = `courses_cl.origin IS NULL`;
+  serverGlobals.catalogOriginRaw = `courses_cl.origin = 'tecmilenio'`;
 
   /*************************************
    * Se establecen las conexiones globales a la DB
@@ -52,11 +54,11 @@ const run = async () => {
   // await startUserLessonsPipeline();
 
   // Inicio de pipelines de Gestion de Cursos de Catálogo (Marketplace)
-  // await startCatalogCoursesPipeline();
-  // await startCatalogModulesPipeline();
-  // await startCatalogCourseLessonsPipeline();
+  await startCatalogCoursesPipeline();
+  await startCatalogModulesPipeline();
+  await startCatalogCourseLessonsPipeline();
   await startCatalogCourseLessonsQuestionsPipeline();
-  // await startCatalogCourseLessonsResourcesPipeline();
+  await startCatalogCourseLessonsResourcesPipeline();
 
   /**
    * Al final se cierran las conexiones globales a la DB
@@ -69,5 +71,9 @@ const run = async () => {
 
   process.exit(0);
 };
+
+// courses: 272
+// modules: 499
+// lessons: 1757
 
 run();

@@ -60,7 +60,8 @@ const mainExtractFn = async () => {
       .whereIn(
         'lessons_cl.course_fb',
         lmsCourses.map((c: any) => c.course_fb),
-      );
+      )
+      .andWhere('lessons_cl.name', '<>', 'Foro general del curso');
 
     console.log(
       'Total de lecciones en LXP asociadas a los cursos del LMS:',

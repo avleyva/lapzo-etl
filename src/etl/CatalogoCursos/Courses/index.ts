@@ -26,6 +26,7 @@ const mainExtractFn = async () => {
     const knexVdmLms = serverGlobals.knexVdmLms;
     const clientSubdomain = serverGlobals.transformClient;
     const lmsClientCatalog = serverGlobals.catalogClient;
+    const catalogOriginRaw = serverGlobals.catalogOriginRaw;
 
     // Se obtiene el ID del cliente en el LMS de VDM
     lmsClient = await knexVdmLms('clients')
@@ -45,7 +46,8 @@ const mainExtractFn = async () => {
       .select('*')
       .where('client_id', 'content')
       .andWhere('courses_cl.stage', '>=', 7)
-      .limit(100);
+      .andWhereRaw(catalogOriginRaw);
+    // .limit(110);
 
     console.log('Total de cursos encontrados en LXP:', lxpCourses.length);
 
@@ -101,6 +103,7 @@ const mainTransformFn = async () => {
           dc4Available: lxpCourse.dc4Available,
           dc3_data_json: lxpCourse.dc3_data_json,
           dc4_data_json: lxpCourse.dc4_data_json,
+          origin: !lxpCourse.origin ? 'lapzo' : lxpCourse.origin,
         };
 
         const courseSettings = {
